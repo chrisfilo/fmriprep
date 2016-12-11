@@ -39,8 +39,8 @@ def t1w_preprocessing(name='t1w_preprocessing', settings=None):
 
     inputnode = pe.Node(niu.IdentityInterface(fields=['t1w']), name='inputnode')
     outputnode = pe.Node(niu.IdentityInterface(
-        fields=['t1_seg', 't1_tpms', 'bias_corrected_t1', 't1_brain', 't1_2_mni',
-                't1_2_mni_forward_transform', 't1_2_mni_reverse_transform'
+        fields=['t1_seg', 't1_tpms', 'bias_corrected_t1', 't1_mask', 't1_2_mni',
+                't1_2_mni_forward_transform', 't1_2_mni_reverse_transform', 't1_brain'
                 ]), name='outputnode')
 
     # 0. Align and merge if several T1w images are provided

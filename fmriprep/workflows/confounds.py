@@ -68,8 +68,8 @@ def discover_wf(settings, name="ConfoundDiscoverer"):
                                       output_names=['roi_file', 'eroded_mask'],
                                       function=prepare_roi_from_probtissue),
                       name='WM_roi')
-    WM_roi.inputs.erosion_mm = 3
-    WM_roi.inputs.epi_mask_erosion_mm = 6
+    WM_roi.inputs.erosion_mm = 6
+    WM_roi.inputs.epi_mask_erosion_mm = 10
 
     def concat_rois_func(in_WM, in_mask):
         import os
@@ -184,7 +184,7 @@ def discover_wf(settings, name="ConfoundDiscoverer"):
 
         (CSF_roi, combine_rois, [('roi_file', 'in_CSF')]),
         (WM_roi, combine_rois, [('roi_file', 'in_WM')]),
-        (inputnode, combine_rois, [('epi_mask', 'ref_header')]),
+        (inputnode, combine_rois, [('fmri_file', 'ref_header')]),
 
         # anatomical confound: aCompCor.
         (inputnode, acompcor, [('fmri_file', 'realigned_file')]),
